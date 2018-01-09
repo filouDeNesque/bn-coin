@@ -1,0 +1,18 @@
+div#lu{
+	position: relative;
+	padding-left: 120px;
+	padding-right: 120px;
+	width: 350px;
+
+	text-align: center;
+	border-style: groove;
+	border-radius: 8px;
+	color : red;
+	box-shadow: 10px 5px 5px green;
+}
+div#surlu{
+	box-sizing: content-box;
+	box-shadow: green;
+
+	color : red;
+}

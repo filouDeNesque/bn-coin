@@ -1,0 +1,64 @@
+information disponible page de recherche simple le BonCoin
+
+1) titre de l'annonce
+2) prix
+3) date
+4) lien vers l'annonce
+
+
+Table base de donnees
+1 table par recherche (exemple table velo = id , title ,date, prix, lien )
+
+ajoute si title && date != dun champs existant
+
+
+Recherche
+recupere le nombre de resultat
+divise le nombre de resultat par 35 (?) donne le nombre de page
+recherche sur chaque page dans une boucle ou :
+    exemple:
+        o = 1;
+        "https://www.leboncoin.fr/annonces/offres/?o="$o"&q=velo&it=1&f=p"
+        o++;
+
+
+compare new table de recherche avec ancienne table meme recherche
+si ligne absente nouvelle table produit = new table
+table vendu+nomdu produit : (id, title, prix, dated'ajout, datedesuppr )
+suppression ancienne table de recherche.
+
+
+stat disponible :
+-prix moyen
+-date de vente moyenne au court de l'annee
+-moyenne de la conservation d'un article
+
+
+
+idee++:
+analyse des titre avec recurence des mots
+influence des mots sur la date de vente
+
+
+https://regex101.com/r/1Th8q4/1
+    *name
+
+
+<meta itemprop="address" content="(.+)
+addresse[1][1] + addresse [1][2]
+    *ville            departement
+
+
+
+itemprop="category" content="(.+)
+    *category
+
+<a href="(\/\/www\.leboncoin\.fr\/(.+)\/[0-9]+\.htm\?ca=[0-9]+_[a-z])
+lien vers la page
+
+<p class="item_supp" itemprop="availabilityStarts" content="([0-9]+-[0-9]+-[0-9]+)"
+    *date de poste
+
+
+<p class="item_supp" itemprop="availabilityStarts" content="([0-9]+-[0-9]+-[0-9]+)">\n+.+\n+\D+(.+)
+    *date             *heure
