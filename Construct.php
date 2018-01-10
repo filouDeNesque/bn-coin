@@ -38,39 +38,39 @@ class Extracteur{
 
  	public function cherche()
  	{
- 	$nbp = $this->nbp;
- 	$recherche = $this->recherche;
- 	$px = $this->px;
- 	$page = $this->page;
-	
-	for($pp=0;$pp<$nbp;$pp++) 
-	{
-		$file = file_get_contents("https://www.leboncoin.fr/annonces/offres/bourgogne/?o=$page&q=$recherche&it=1&sp=1");
-		$page++;
-		$nombre = preg_match_all("#price\" content=\"(.+)\"#", $file, $matches);
-		$prix = $matches[1][1];
-		$prixxie = (int)$prix;
-		//echo "<br> prixxie :$prixxie";
-		set_time_limit(500); //repousse le temp de recherche
+    	$nbp = $this->nbp;
+    	$recherche = $this->recherche;
+    	$px = $this->px;
+    	$page = $this->page;
 
-		if ($prixxie < $px) 
-		{
-			$page++;
-			// echo "$page";
-		}
-		else{
-			$name = preg_match_all("#item_title\" itemprop=\"name\">\n( )+(.+)#", $file, $nom);
-			$adresse = preg_match_all("#<meta itemprop=\"address\" content=\"(.+)\"#", $file, $addresses);
-	
-			$category = preg_match_all("#itemprop=\"category\" content=\"(.+)\"#", $file, $categ);
-	
-			$lien = preg_match_all("#<a href=\"(\/\/www\.leboncoin\.fr\/(.+)\/[0-9]+\.htm\?ca=[0-9]+_[a-z])#", $file, $li);
+        for($pp=0;$pp<$nbp;$pp++)
+        {
+    	    $file = file_get_contents("https://www.leboncoin.fr/annonces/offres/bourgogne/?o=$page&q=$recherche&it=1&sp=1");
+    	    $page++;
+    	    $nombre = preg_match_all("#price\" content=\"(.+)\"#", $file, $matches);
+    	    $prix = $matches[1][1];
+    	    $prixxie = (int)$prix;
+    	    //echo "<br> prixxie :$prixxie";
+    	    set_time_limit(500); //repousse le temp de recherche
 
-			$date = preg_match_all("#<p class=\"item_supp\" itemprop=\"availabilityStarts\" content=\"([0-9]+-[0-9]+-[0-9]+)\"#", $file, $dat);
+	    	if ($prixxie < $px)
+	    	{
+			    $page++;
+			    // echo "$page";
+		    }
+		    else{
+		    	$name = preg_match_all("#item_title\" itemprop=\"name\">\n( )+(.+)#", $file, $nom);
+	            $adresse = preg_match_all("#<meta itemprop=\"address\" content=\"(.+)\"#", $file, $addresses);
+	
+	             $category = preg_match_all("#itemprop=\"category\" content=\"(.+)\"#", $file, $categ);
 
-			$heure = preg_match_all("#<p class=\"item_supp\" itemprop=\"availabilityStarts\" content=\"([0-9]+-[0-9]+-[0-9]+)\">\n+.+\n+\D+(.+)#", $file, $hr);
-		
-			set_time_limit(500);
+	             $lien = preg_match_all("#<a href=\"(\/\/www\.leboncoin\.fr\/(.+)\/[0-9]+\.htm\?ca=[0-9]+_[a-z])#", $file, $li);
+
+	             $date = preg_match_all("#<p class=\"item_supp\" itemprop=\"availabilityStarts\" content=\"([0-9]+-[0-9]+-[0-9]+)\"#", $file, $dat);
+
+	             $heure = preg_match_all("#<p class=\"item_supp\" itemprop=\"availabilityStarts\" content=\"([0-9]+-[0-9]+-[0-9]+)\">\n+.+\n+\D+(.+)#", $file, $hr);
+
+	             set_time_limit(500);
 
 			for($i=0;$i<35;$i++)
 			{

@@ -95,8 +95,6 @@ require 'Construct.php'
 		$recherche = $Construct->nmbp();
 		$extract = $Construct->cherche();
 		var_dump($Construct->nomine);
-
-
 	?>
 	 
 	</body>	
